@@ -1,0 +1,25 @@
+---
+- name: Installing and Starting Apache Server
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache Server
+      yum:
+        name: httpd
+        state: present
+        
+    - name: Print Message
+      debug: msg="Apache Installed"
+
+    - name: Start Apache Server
+      service:
+        name: httpd
+        state: stopped
+        
+    - name: Print Message
+      debug: msg="Apache Server is Started"
+      
+#sed -i 's/present/absent/g' Apache_PB.yml
+#sed -i 's/started/stopped/g' Apache_PB.yml
+#ansible-playbook --syntax-check Apache_PB.yml
+#ansible-playbook Apache_PB.yml
