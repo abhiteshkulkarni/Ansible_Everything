@@ -1,0 +1,107 @@
+Modules supports
+-----------------
+
+
+ADHOC commands  are great for tasks you repeat daily
+
+ADHOC     : ansible all -a "yum install git -y"
+          ansible all -a "yum remove git* -y"
+-----
+
+Ansible Modules are units of code that can control system resources or execute system commands
+
+MODULE    : ansible all -m yum -a "name=git state=present"  --> -m is module , name = packagename, , state = present(install), -a Adhoc Commands
+------
+
+States:
+-------
+yum modules (States for Package Management)
+-----------
+Present = install
+absent = uninstall
+latest = install or upgrades to latest version
+
+
+Services module (States for Service Management)
+---------------
+started = start
+stopped = stop
+restarted = restart the service
+enabled = Ensures the service starts on boot.
+
+
+install packages with modules
+--------------------------------
+ansible all -m yum -a "name=git state=present"
+
+ansible all -a "git -v"
+
+ansible all -m yum -a "name=maven state=present"
+
+To install Apache service
+------------------------
+
+ansible all -m yum -a "name=httpd state=present"
+
+TO see the Version of Apache
+----------------------------
+
+ansible all -a "httpd -v"
+
+TO start Apache
+----------------
+
+ansible all -m service -a "name=httpd state=started"  
+
+---> this is use to start the service {we changed module yum to service, because yum to install, service to start}
+
+TO see the status of Apache
+------------------------
+
+ansible all -a "systemctl status httpd" --> to see the status of httpd in all servers
+
+To Stop Apache service
+---------------------
+
+ansible all -m service -a "name=httpd state=stopped" --> to stop the service
+
+Update Apache to latest version
+------------------------------
+
+ansible all -m yum -a "name=httpd state=latest"   --> to update to latest version
+
+uninstall apache:
+---------------
+
+ansible all -m yum -a "name=httpd state=absent"  ---> to uninstall httpd, absent = uninstall
+
+
+==================================
+
+TO create users in servers
+--------------------
+
+ansible all -m user -a "name=Abhi state=present"  --> present = to create
+
+ansible all -a "cat /etc/passwd"
+
+create another user
+
+==============================
+
+To create a file
+--------------
+
+touch file1
+
+ansible all -m copy -a "src=file1 dest=/home/ec2-user/"
+
+ansible all -a "ls /home/ec2-user"
+
+====================
+
+Remove all packages
+----------------
+
+ansible all -a "yum remove  maven* git* httpd* -y"
+
