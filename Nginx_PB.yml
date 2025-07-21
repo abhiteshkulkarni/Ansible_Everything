@@ -1,0 +1,30 @@
+---
+- name: Install Nginx Web-Server and Start
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Nginx Web-Server
+      yum:
+        name: nginx
+        state: present
+
+    - name: Print Message
+      debug: msg="Nginx WebServer is Installed"
+
+    - name: Start Nginx Web-Server
+      service:
+        name: nginx
+        state: started
+        
+    - name: Print Message
+      debug: msg="Nginx WebServer is Started"
+
+    - name: Enabled Nginx Web-Server
+      service:
+        name: nginx
+        enabled: yes
+
+#sed -i 's/present/absent/g' Nginx_PB.yml
+#sed -i 's/started/stopped/g' Nginx_PB.yml
+#ansible-playbook --syntax-check Nginx_PB.yml
+#ansible-playbook Nginx_PB.yml
