@@ -1,3 +1,15 @@
+# PLAYBOOK:
+# its a collection of modules.
+# we can execute multiple modules inside playbooks.
+# playbook is written on YAML langauge.
+# YAML=YET ANOTHER MARKUP LANGUAGE
+# Extension: .yml or .yaml
+# its a human redable and seraliazable language.
+# it consits key-value pairs (dictionary).
+# space blw key and value must.
+# playbook start with --- and end with ... (opt)
+
+
 ---
 - name: First PlayBook
   hosts: all
