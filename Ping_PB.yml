@@ -1,0 +1,6 @@
+---
+- name: First PlayBook
+  hosts: all
+  tasks:
+    - name: Test Connecting
+      ping:
