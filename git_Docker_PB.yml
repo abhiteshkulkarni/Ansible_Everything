@@ -1,0 +1,28 @@
+---
+- name: Install Git and Docker then Start Docker
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Git
+      yum: name=git state=present
+
+    - name: Print msg
+      debug: msg="Installed Git Successfully"
+
+    - name: Install Docker
+      yum: name=docker state=present
+
+    - name: Print msg
+      debug: msg="Installed Docker Successfull"
+
+    - name: Start Docker
+      service: name=docker state=started
+
+    - name: Print Msg
+      debug: msg="Started Docker Successfully"
+
+      #sed -i 's/present/absent/g' git_Docker_PB.yml
+#sed -i 's/started/stopped/g' git_Docker_PB.yml
+#ansible-playbook --syntax-check git_Docker_PB.yml
+#ansible-playbook git_Docker_PB.yml
